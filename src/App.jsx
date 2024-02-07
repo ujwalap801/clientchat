@@ -18,17 +18,33 @@ function App() {
   // })
 
 
+  // const mutation = useMutation({
+  //   mutationFn: () => fetchResponse(chat),
+  //   onSuccess: (data) => {
+  //     // console.log('AI Response:', data); // Check the data received from AI
+  //     setChat((prev) => [
+  //       ...prev,
+  //       { sender: 'ai', message: data.message.replace(/^\n\n/, '') },
+  //     ]);
+  //   },
+  // });
+
+
   const mutation = useMutation({
-    mutationFn: () => fetchResponse(chat),
-    onSuccess: (data) => {
-      // console.log('AI Response:', data); // Check the data received from AI
-      setChat((prev) => [
-        ...prev,
-        { sender: 'ai', message: data.message.replace(/^\n\n/, '') },
-      ]);
-    },
-  });
-  
+  mutationFn: () => fetchResponse(chat),
+  onSuccess: (data) => {
+    setChat((prev) => [
+      ...prev,
+      { sender: 'ai', message: data.message.replace(/^\n\n/, '') },
+    ]);
+  },
+  onError: (error) => {
+    console.error('Error in mutation:', error);
+    
+    // Handle the error, update UI, show a notification, etc.
+  },
+});
+
   // const handleSubmit = async (message) => {
   //   await Promise.resolve(setChat((prev) => [...prev, message]));
   //   mutation.mutate();

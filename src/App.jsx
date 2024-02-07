@@ -29,11 +29,16 @@ function App() {
     },
   });
   
-  
-  const handleSubmit = async (message) => {
-    await Promise.resolve(setChat((prev) => [...prev, message]))
+  // const handleSubmit = async (message) => {
+  //   await Promise.resolve(setChat((prev) => [...prev, message]));
+  //   mutation.mutate();
+  // }
+  const handleSubmit = (message) => {
+    setChat((prev) => [...prev, message]);
     mutation.mutate();
   }
+  
+  
   return (
     <div className='bg-[#1A232E] h-screen py-6 relative sm:px-16
    px-12 text-white overflow-hidden flex flex-col justify-between
